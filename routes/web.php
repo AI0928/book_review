@@ -14,4 +14,11 @@ use App\Http\Controllers\ReviewController;  //外部にあるPostControllerク�
 |
 */
 
-Route::get('/reviews', [ReviewController::class, 'index']);   
+Route::get('/', [ReviewController::class, 'index']);   
+
+Route::get('/reviews/create', [ReviewController::class, 'create']);
+
+Route::post('/reviews', [ReviewController::class, 'store']);
+
+Route::get('/reviews/{review}', [ReviewController::class ,'show']);
+
