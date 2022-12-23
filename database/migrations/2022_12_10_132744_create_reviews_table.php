@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('publisher', 50);
             $table->bigInteger('book_value');
             $table->string('book_text', 500);
+            $table->string('book_image', 100);
             $table->bigInteger('point');
+            
             $table->timestamps();
             $table->softDeletes();
         });

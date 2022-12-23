@@ -16,6 +16,7 @@ class Review extends Model
         'book_value',
         'publisher',
         'point',
+        'book_image',
         #'user_id',
         #'user_name',
         

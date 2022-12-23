@@ -15,6 +15,7 @@
             <p class='book_title'>{{ $review->book_title }}</p>
             <p class='point'>{{ $review->point }}</p>
             <p class='point'>著者：{{ $review->book_author }}　出版社：{{$review->publisher }} 値段：{{$review->book_value }}</p>
+            <td><img src="{{ asset('storage/'.$review->book_image) }}"></td>
             <div class="review_text">
                 <h3>おすすめ内容</h3>
                 <p>{{ $review->review_text }}</p> 
