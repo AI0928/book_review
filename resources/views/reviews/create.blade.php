@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>ReviewName</h1>
-        <form action="/reviews" method="POST">
+        <form action="/reviews"  method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <h2>ReviewTitle</h2>
@@ -19,6 +19,9 @@
             <div class="book_title">
                 <h2>BookTitle</h2>
                 <input type="text" name="review[book_title]" placeholder="タイトル"/>
+            </div>
+            <div class="book_image">
+                <input type="file" name="book_image">
             </div>
             <div class="book_author">
                 <h2>BookAuthor</h2>

@@ -26,8 +26,11 @@ class ReviewController extends Controller
     
     public function store(Request $request, Review $review)
     {
-        $input = $request['review'];
-        $review->fill($input)->save();
+        #$input = $request['review'];
+        $image_path = $request->file('book_image')->store('images', 'public');
+        #$review->fill($input)->save();
+        $review->book_image = $image_path;
+        $review->fill($request['review'])->save();
         return redirect('/reviews/' . $review->id);
     }
 }
