@@ -7,8 +7,14 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        
         <h1>Review Name</h1>
+        <div class='create'>
             <a href='/reviews/create'>create</a>
+        </div>
+        <div class='tag_index'>
+            <a href='/tags/index'>タグ一覧</a>
+        </div>
         <div class='posts'>
             <div class='posts'>
             @foreach ($reviews as $review)
@@ -22,5 +28,6 @@
             @endforeach
             </div>
         </div>
+
     </body>
 </html>
