@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\Tag;
 
 class ReviewController extends Controller
 {
@@ -19,15 +20,17 @@ class ReviewController extends Controller
     //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
     
-    public function create()
+    public function create(Tag $tag)
     {
-       return view('reviews/create');
+        $suggests = $tag->select(['title'])->get();
+        return view('reviews/create', compact('suggests'));
     }
     
     public function store(Request $request, Review $review)
     {
         #$input = $request['review'];
         $image_path = $request->file('book_image')->store('images', 'public');
+        #$image_path = $request->file('book_image')->store('public/images');
         #$review->fill($input)->save();
         $review->book_image = $image_path;
         $review->fill($request['review'])->save();

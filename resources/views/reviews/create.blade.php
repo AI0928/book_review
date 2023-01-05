@@ -1,7 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/tag.js'])
+        <meta charset="utf-8"/>
         <title>Review</title>
     </head>
     <body>
@@ -23,6 +27,7 @@
             <div class="book_image">
                 <input type="file" name="book_image">
             </div>
+            <input id="tags" type="text" />
             <div class="book_author">
                 <h2>BookAuthor</h2>
                 <input type="text" name="review[book_author]" placeholder="著者"/>
@@ -48,5 +53,8 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
+        <script>
+            const suggests = @json($suggests)
+        </script>
     </body>
 </html>
