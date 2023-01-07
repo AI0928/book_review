@@ -11,6 +11,9 @@
         <h1 class="title">
             {{ $review->review_title }}
         </h1>
+        @foreach($review->tags as $tag)
+            <p>{{ $tag->title }}</p>
+        @endforeach
         <div class="content">
             <p class='book_title'>{{ $review->book_title }}</p>
             <p class='point'>{{ $review->point }}</p>
