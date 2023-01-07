@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/tag.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <meta charset="utf-8"/>
         <title>Review</title>
     </head>
@@ -28,6 +28,9 @@
                 <input type="file" name="book_image">
             </div>
             <input id="tags" type="text" />
+            <div id="tag_box">
+                
+            </div>
             <div class="book_author">
                 <h2>BookAuthor</h2>
                 <input type="text" name="review[book_author]" placeholder="著者"/>

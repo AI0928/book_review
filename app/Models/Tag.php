@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Review;
 
 class Tag extends Model
 {
@@ -19,5 +20,10 @@ class Tag extends Model
     {
         // updated_atで降順に並べたあと、limitで件数制限をかける
         return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
+    }
+    
+    public function reviews()
+    {
+        return $this->belongsToMany('App\Models\Review');
     }
 }
