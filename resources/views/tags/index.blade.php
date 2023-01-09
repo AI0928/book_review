@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <x-app-layout>
     <head>
         <meta charset="utf-8">
         <title>Reviews</title>
@@ -27,4 +28,5 @@
             <a href="/">レビュー一覧に戻る</a>
         </div>
     </body>
+    </x-app-layout>
 </html>

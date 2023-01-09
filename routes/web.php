@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ReviewController;  //外部にあるPostControllerクラスをインポート。
-use App\Http\Controllers\TagController;  //外部にあるPostControllerクラスをインポート。
+use App\Http\Controllers\ReviewController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +15,24 @@ use App\Http\Controllers\TagController;  //外部にあるPostControllerクラ�
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(ReviewController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::post('/reviews', 'store')->name('store');
+    Route::get('/reviews/create', 'create')->name('create');
+    Route::get('/reviews/{review}', 'show')->name('show');
+    Route::put('/reviews/{review}', 'update')->name('update');
+    Route::delete('/reviews/{review}', 'delete')->name('delete');
+    Route::get('/reviews/{review}/edit', 'edit')->name('edit');
+});
 
-Route::get('/', [ReviewController::class, 'index']);   
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/tags/index', [TagController::class, 'index']);   
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/reviews/create', [ReviewController::class, 'create']);
-
-Route::get('/tags/create', [TagController::class, 'create']);
-
-Route::post('/reviews', [ReviewController::class, 'store']);
-
-Route::post('/tags', [TagController::class, 'store']);
-
-Route::get('/reviews/{review}', [ReviewController::class ,'show']);
-
-Route::get('/tags/{tag}', [TagController::class ,'show']);
-
-
+require __DIR__.'/auth.php';
