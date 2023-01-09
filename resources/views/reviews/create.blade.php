@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <x-app-layout>
     <head>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -60,4 +61,5 @@
             const suggests = @json($suggests)
         </script>
     </body>
+    </x-app-layout>
 </html>
