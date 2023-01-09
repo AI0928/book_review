@@ -2,13 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <x-app-layout>
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
         <title>Reviews</title>
         <!-- Fonts -->
         
@@ -36,7 +34,6 @@
             </div>
             <input id="tags" type="text" />
             <div id="tag_box">
-            
             </div>
             <div class="book_author">
                 <h2>BookAuthor</h2>
@@ -64,7 +61,7 @@
             <a href="/">戻る</a>
         </div>
         <script>
-            const hand_array = [@json($suggests),@json($review->tags)]
+            const hand_array = [@json($suggests),@json($review->tags)];
         </script>
     </div>
 </body>

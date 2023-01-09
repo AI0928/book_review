@@ -10,6 +10,7 @@
         <title>Review</title>
     </head>
     <body>
+        {{ Auth::user()->name }}
         <h1>ReviewName</h1>
         <form action="/reviews"  method="POST" enctype="multipart/form-data">
             @csrf
@@ -58,7 +59,7 @@
             <a href="/">戻る</a>
         </div>
         <script>
-            const suggests = @json($suggests)
+            const hand_array = [@json($suggests)];
         </script>
     </body>
     </x-app-layout>
