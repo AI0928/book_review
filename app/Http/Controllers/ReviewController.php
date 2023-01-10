@@ -76,9 +76,10 @@ class ReviewController extends Controller
         
         foreach ($request['tags_array'] as $request_tag){
             
+            
             $tag_id = array_search($request_tag, array_column( $tags_array, "title" ));
-            //dd( $tag_id);
-            if ($tag_id != false){
+            //dd(gettype($tag_id));
+            if (gettype($tag_id) == "integer"){
                 //既存のタグのIDだけ送ったパターン。
                 
                 $review->tags()->attach($tags_array[$tag_id]['id']);

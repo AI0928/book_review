@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TagController;
 
 
 /*
@@ -25,6 +26,8 @@ Route::controller(ReviewController::class)->middleware(['auth'])->group(function
     Route::delete('/reviews/{review}', 'delete')->name('delete');
     Route::get('/reviews/{review}/edit', 'edit')->name('edit');
 });
+
+Route::get('/tags/{tag}', [TagController::class, 'index']);   
 
 Route::get('/dashboard', function () {
     return view('dashboard');

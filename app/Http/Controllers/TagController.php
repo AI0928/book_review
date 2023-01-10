@@ -15,7 +15,7 @@ class TagController extends Controller
     
     public function index(Tag $tag)//インポートしたPostをインスタンス化して$postとして使用。
     {
-        return view('tags/index')->with(['tags' => $tag->getByLimit()]);  
+        return view('tags/index')->with(['reviews' => $tag->getByTags()]);  
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
     

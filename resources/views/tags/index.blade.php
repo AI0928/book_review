@@ -8,25 +8,28 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Tag Name</h1>
+        
+        <h1>Review Name</h1>
         <div class='create'>
-            <a href='/tags/create'>create</a>
+            <a href='/reviews/create'>create</a>
         </div>
-        <div class='tags'>
-            <div class='tags'>
-            @foreach ($tags as $tag)
-                <div class='tag'>
+        <div class='posts'>
+            <div class='posts'>
+            @foreach ($reviews as $review)
+                <div class='review'>
                     <h2 class='title'>
-                        <a href="/tags/{{ $tag->id }}">{{ $tag->title }}</a>
+                        <a href="/reviews/{{ $review->id }}">{{ $review->review_title }}</a>
                     </h2>
-                    <p class='text'>{{ $tag->title }}</p>
+                    @foreach($review->tags as $tag)
+                        <a href="/tags/{{ $tag->id }}">{{ $tag->title }}</a>
+                    @endforeach
+                    <p class='book_title'>{{ $review->book_title }}</p>
+                    <p class='point'>{{ $review->point }}</p>
                 </div>
             @endforeach
             </div>
         </div>
-        <div class="footer">
-            <a href="/">レビュー一覧に戻る</a>
-        </div>
+
     </body>
     </x-app-layout>
 </html>
