@@ -12,6 +12,7 @@
         <h1 class="title">
             {{ $review->review_title }}
         </h1>
+        <p>{{ $review->user_name }}</p>
         @foreach($review->tags as $tag)
             <p>{{ $tag->title }}</p>
         @endforeach

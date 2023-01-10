@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('book_text', 500);
             $table->string('book_image', 100);
             $table->bigInteger('point');
+            $table->foreignId('user_id')->constrained()->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('user_name', 50);
             $table->timestamps();
             $table->softDeletes();
         });
