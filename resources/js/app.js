@@ -74,4 +74,3 @@ window.addEventListener('DOMContentLoaded', function(){
         addEvent(tags.value);
     });
 });
-

@@ -21,8 +21,8 @@ class Review extends Model
         'publisher',
         'point',
         'book_image',
-        #'user_id',
-        #'user_name',
+        'user_id',
+        'user_name',
         
     ];
     
@@ -37,6 +37,10 @@ class Review extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');
+    }
+    
+    public function user() {
+        return $this->belongsTo('App\Models\User');
     }
 }
 

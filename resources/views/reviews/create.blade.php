@@ -11,6 +11,7 @@
     </head>
     <body>
         {{ Auth::user()->name }}
+        
         <h1>ReviewName</h1>
         <form action="/reviews"  method="POST" enctype="multipart/form-data">
             @csrf
@@ -54,6 +55,8 @@
                 <input type="number" name="review[point]" />
             </div>
             <input type="submit" value="store"/>
+            <input type="hidden" id="user_id" name="review[user_id]" value="{{ Auth::user()->id }}" />
+            <input type="hidden" id="user_name" name="review[user_name]" value="{{ Auth::user()->name }}" />
         </form>
         <div class="footer">
             <a href="/">戻る</a>
