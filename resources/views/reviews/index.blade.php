@@ -13,9 +13,6 @@
         <div class='create'>
             <a href='/reviews/create'>create</a>
         </div>
-        <div class='tag_index'>
-            <a href='/tags/index'>タグ一覧</a>
-        </div>
         <div class='posts'>
             <div class='posts'>
             @foreach ($reviews as $review)
@@ -23,6 +20,9 @@
                     <h2 class='title'>
                         <a href="/reviews/{{ $review->id }}">{{ $review->review_title }}</a>
                     </h2>
+                    @foreach($review->tags as $tag)
+                        <a href="/tags/{{ $tag->id }}">{{ $tag->title }}</a>
+                    @endforeach
                     <p class='book_title'>{{ $review->book_title }}</p>
                     <p class='point'>{{ $review->point }}</p>
                 </div>

@@ -22,6 +22,10 @@ class Tag extends Model
         return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
     }
     
+    public function getByTags(int $limit_count = 10)
+    {
+        return $this->reviews()->with('tags')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
     public function reviews()
     {
         return $this->belongsToMany('App\Models\Review');
