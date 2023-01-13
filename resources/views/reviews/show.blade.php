@@ -31,13 +31,16 @@
             </div>
         </div>
         <div class="footer">
-            <div class="edit"><a href="/reviews/{{ $review->id }}/edit">edit</a></div>
+            
             <a href="/">戻る</a>
-            <form action="/reviews/{{ $review->id }}" id="form_{{ $review->id }}" method="post">
-            @csrf
-            @method('DELETE')
-            <button type="button" onclick="deleteReview({{ $review->id }})">delete</button> 
-            </form>
+            @if ($review->user_id === Auth::user()->id)
+                <div class="edit"><a href="/reviews/{{ $review->id }}/edit">edit</a></div>
+                <form action="/reviews/{{ $review->id }}" id="form_{{ $review->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deleteReview({{ $review->id }})">delete</button> 
+                </form>
+            @endif
         </div>
         <script>
         function deleteReview(id) {
