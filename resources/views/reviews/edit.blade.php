@@ -1,69 +1,94 @@
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <x-app-layout>
-    <head>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <meta charset="utf-8"/>
-        <title>Reviews</title>
-        <!-- Fonts -->
-        
-    </head>
-    <body>
-    <h1 class="title">編集画面</h1>
-    <div class="content">
-        <form action="/reviews/{{ $review->id }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="title">
-                <h2>ReviewTitle</h2>
-                <input type="text" name="review[review_title]" value="{{ $review->review_title }}"/>
+        <head>
+            
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+            <meta charset="utf-8"/>
+            <title>Reviews</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <!-- Fonts -->
+        </head>
+    
+        <body>
+            <div class="container">
+                <h1>レビュー編集</h1>
+                
+                <form action="/reviews/{{ $review->id }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="review_title">レビュータイトル</label>
+                        <input id="review_title" type="text" class="form-control" id="review_title" name="review[review_title]" value="{{ $review->review_title }}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review_text">おすすめ内容</label>
+                        <textarea id="review_text" class="form-control" name="review[review_text]" >{{ $review->review_text }}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book_title">本のタイトル</label>
+                        <input id ="book_title" class="form-control" type="text" name="review[book_title]" value="{{ $review->book_title }}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book_image">本の写真</label>
+                        <input id="book_image" class="form-control-file" type="file"  name="book_image">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tags">追加するタグ</label>
+                        <input id="tags" class="form-control" type="text" />
+                    </div>
+                    <div id="tag_box">
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="book_author">著者名</label>
+                            <input id = "book_author" class="form-control" type="text" name="review[book_author]" value="{{ $review->book_author }}"/>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="publisher">出版社</label>
+                            <input id="publisher" class="form-control" type="text" name="review[publisher]" value="{{ $review->publisher }}"/>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="book_value">本の値段</label>
+                            <input id="book_value" class="form-control" type="number" name="review[book_value]" value="{{ $review->book_value }}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book_text">本の内容</label>
+                        <textarea id="book_text" class="form-control" name="review[book_text]" placeholder="本の大まかな内容">{{ $review->book_text }}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="point">おすすめ度</label>
+                        <input id="point" class="form-control" type="number" name="review[point]" avlue="{{ $review->point}}"/>
+                    </div>
+                    
+                    <div class="row justify-content-between">
+                        <div class="col-2">
+                            <input class="btn btn-primary" type="submit" value="store"/>
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-link" href="/">戻る</a>
+                        </div>
+                    </div>
+                </form>
+                
+                <script>
+                    const hand_array = [@json($suggests),@json($review->tags)];
+                </script>
             </div>
-            <div class="body">
-                <h2>Body</h2>
-                <textarea name="review[review_text]" >{{ $review->review_text }}</textarea>
-            </div>
-            <div class="book_title">
-                <h2>BookTitle</h2>
-                <input type="text" name="review[book_title]" value="{{ $review->book_title }}"/>
-            </div>
-            <div class="book_image">
-                <input type="file" name="book_image">
-            </div>
-            <input id="tags" type="text" />
-            <div id="tag_box">
-            </div>
-            <div class="book_author">
-                <h2>BookAuthor</h2>
-                <input type="text" name="review[book_author]" value="{{ $review->book_author }}"/>
-            </div>
-            <div class="publisher">
-                <h2>Publisher</h2>
-                <input type="text" name="review[publisher]" value="{{ $review->publisher }}"/>
-            </div>
-            <div class="book_value">
-                <h2>BookValue</h2>
-                <input type="number" name="review[book_value]" value="{{ $review->book_value }}"/>
-            </div>
-            <div class="book_text">
-                <h2>BookText</h2>
-                <textarea name="review[book_text]" placeholder="本の大まかな内容">{{ $review->book_text }}</textarea>
-            </div>
-            <div class="point">
-                <h2>Point</h2>
-                <input type="number" name="review[point]" avlue="{{ $review->point}}"/>
-            </div>
-            <input type="submit" value="store"/>
-        </form>
-        <div class="footer">
-            <a href="/">戻る</a>
-        </div>
-        <script>
-            const hand_array = [@json($suggests),@json($review->tags)];
-        </script>
-    </div>
-</body>
-</x-app-layout>
+        </body>
+    </x-app-layout>
 </html>
