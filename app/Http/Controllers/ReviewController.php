@@ -9,9 +9,23 @@ use App\Models\Tag;
 
 class ReviewController extends Controller
 {
-    public function index(Review $review)//インポートしたPostをインスタンス化して$postとして使用。
+    public function index(Request $reqest)//インポートしたPostをインスタンス化して$postとして使用。
     {
-        return view('reviews/index')->with(['reviews' => $review->getByLimit()]);  
+        $keyword = $reqest->input('keyword');
+        
+        $query = Review::query();
+        
+        if(!empty($keyword)){
+            $query->with('tags')->where('review_title', 'LIKE', "%{$keyword}%")
+            ->orWhere('book_title', 'LIKE', "%{$keyword}%")
+            ->orWhere('book_author', 'LIKE', "%{$keyword}%")
+            ->orderBy('updated_at', 'DESC');
+        }
+        
+        
+        $reviews = $query->paginate(15)->withQueryString();
+
+        return view('reviews/index', compact('reviews', 'keyword'));  
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
     

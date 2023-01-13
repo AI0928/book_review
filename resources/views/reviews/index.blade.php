@@ -8,8 +8,14 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        
         <h1>Review Name</h1>
+        <div>
+            <form action="{{ route('index') }}" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
+        </div>
+        
         <div class='create'>
             <a href='/reviews/create'>create</a>
         </div>
